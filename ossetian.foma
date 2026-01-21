@@ -1,0 +1,68 @@
+###ossetian.foma###
+
+define lVowel [ а | е | ё | и | о | у | ы | э | ю | я | æ ] ; 
+define uVowel [ А | Е | Ё | И | О | У | Ы | Э | Ю | Я | Æ ] ;
+define lConsonant [ б | в | г | д | ж | з | й | к | л | м | н | п | р | с | т | ф | х | ц | ч | ш | щ | ъ | ь ] ;
+define uConsonant [ Б | В | Г | Д | Ж | З | Й | К | Л | М | Н | П | Р | С | Т | Ф | Х | Ц | Ч | Ш | Щ | Ъ | Ь ] ;
+define Vowel [ lVowel | uVowel ] ;
+define Consonant [ lConsonant | uConsonant ] ;
+define Letter [ Vowel | Consonant ] ;
+define Stem [ Letter+ ] ;
+define PropStem [ [ uVowel | uConsonant ] Letter+ ] ;
+
+###Nominals###
+define NounMark "+NOUN" ;
+define AdjMark "+ADJ" ;
+define AdvMark "+ADV" ;
+define PropMark "+NPROP" ;
+define AdpMark "+ADP" ;
+define IntjMark "+INTJ" ;
+define Xmark "+X" ;
+
+define PVMark "Prefix=Yes+" ;
+define PlurMark "+Number=Plur" ;
+define SingMark "+Number=Sing" ;
+define NumberMark [ PlurMark | SingMark ] ;
+define CmpMark "+Degree=Cmp" ;
+define CaseMark [ "+Case=Nom" | "+Case=Num" | "+Case=Gen" | "+Case=Dat" | "+Case=All" | "+Case=Abl" | "+Case=Ine" | "+Case=Sup" | "+Case=Equ" | "+Case=Com" | "+Case=Dir" | "+Case=Rcs" ] ;
+define NonFinMark [ "+VerbForm=Inf" | "+VerbForm=Inf2" | "+VerbForm=Part+Tense=Past+Voice=Pass" | "+VerbForm=Part+Tense=Pres+Voice=Act" | "+VerbForm=Part2+Tense=Pres+Voice=Act" | "+VerbForm=Part+Tense=Fut+Voice=Pass"| "+VerbForm=Conv" ] ;
+#define Noun Stem NounMark NumberMark CaseMark ;
+define Nominal (PVMark) [ Stem [ AdpMark | IntjMark | Xmark ] | PropStem PropMark (PlurMark) CaseMark | Stem (NonFinMark) (CmpMark) [ [ AdjMark | AdvMark ] | NounMark (NumberMark) CaseMark ] ] ;
+
+define PV "Prefix=Yes+" -> [ А | а | Б а | б а | Н ы | н ы | Р а | р а | Æ р | æ р | р | Æ р б а | æ р б а | р б а | С | с | Ы с | ы с | Ф æ | ф æ | Ф е | ф е | æ н æ | Æ н æ | æ д | Æ д ] ;
+define NonFinite "+VerbForm=Inf" -> ы н , "+VerbForm=Inf2" -> æ н , "+VerbForm=Part+Tense=Past+Voice=Pass" -> 0 , "+VerbForm=Part+Tense=Pres+Voice=Act" -> æ г , "+VerbForm=Part2+Tense=Pres+Voice=Act" -> а г , "+VerbForm=Part+Tense=Fut+Voice=Pass" -> и н а г , "+VerbForm=Conv" -> г æ ;
+define Compar "+Degree=Cmp" -> д æ р ;
+define ExceptionalAll "+NOUN" "+Number=Plur" "+Case=All" -> т æ м , "+NOUN" "+Number=Plur" "+Case=Nom" -> т æ ;
+define NNumber [ "+NOUN" | "+NPROP" ] "+Number=Sing" -> 0 , [ "+NOUN" | "+NPROP" ] "+Number=Plur" -> т ; 
+define NDeletion [ "+NOUN" | "+ADJ" | "+ADV" | "+NPROP" | "+ADP" | "+INTJ" | "+X" ] -> 0 ;
+define jEpenth [ "+Case=Ine" | "+Case=Gen" | "+Case=Num" ] -> й ы || [ [ Consonant | у ] Vowel | й ] _ , "+Case=Dat" -> й æ н || [ [ Consonant | у ] Vowel | й ] _ , "+Case=Abl" -> й æ || [ [ Consonant | у ] Vowel | й ] _ , "+Case=Sup" -> й ы л || [ [ Consonant | у ] Vowel | й ] _ , "+Case=Equ" -> й а у || [ [ Consonant | у ] Vowel | й ] _ ;
+define yEpenth "+Case=Dir" -> ы р д æ м || Consonant _ , "+Case=Rcs" ->  р д ы г æ й || Consonant _ ;
+define Case "+Case=Nom" -> 0 , [ "+Case=Ine" | "+Case=Gen" | "+Case=Num" ] -> ы , "+Case=Dat" -> æ н , "+Case=All" -> м æ , "+Case=Abl" -> æ й , "+Case=Sup" -> ы л , "+Case=Equ" -> а у , "+Case=Com" -> и м æ , "+Case=Dir" -> р д æ м , "+Case=Rcs" -> р д ы г æ й ;
+
+define NGrammar [ Nominal .o. PV .o. NonFinite .o. Compar .o. ExceptionalAll .o. NNumber .o. NDeletion .o. jEpenth .o. yEpenth .o. Case ] ;
+
+###Verbals###
+define VerbMark "+VERB" ;
+define MoodMark [ "+VerbForm=Fin+Mood=Ind" | "+VerbForm=Fin+Mood=Imp" | "+VerbForm=Fin+Mood=Opt" | "+VerbForm=Fin+Mood=Irr" | "+VerbForm=Fin+Mood=Sub" ] ;
+define TenseMark [ "+Tense=Pres" | "+Tense=Past" | "+Tense=Fut" ] ;
+define PersonMark [ "+Person=1+Number=Sing" | "+Person=2+Number=Sing" | "+Person=3+Number=Sing" | "+Person=1+Number=Plur" | "+Person=2+Number=Plur" | "+Person=3+Number=Plur" ] ;
+define TrMark "+Tr" ;
+define Verb (PVMark) Stem VerbMark [ NonFinMark | MoodMark (TrMark) (TenseMark) PersonMark ] ;
+
+define Present "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tense=Pres" "+Person=1+Number=Sing" -> ы н , "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tense=Pres" "+Person=2+Number=Sing" -> ы с , "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tense=Pres" "+Person=3+Number=Sing" -> ы , "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tense=Pres" "+Person=1+Number=Plur" -> æ м , "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tense=Pres" "+Person=2+Number=Plur" -> у т , "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tense=Pres" "+Person=3+Number=Plur" -> ы н ц ;
+define Future "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tense=Fut" "+Person=1+Number=Sing" -> д з ы н æ н , "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tense=Fut" "+Person=2+Number=Sing" -> д з ы н æ , "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tense=Fut" "+Person=3+Number=Sing" -> [ д з æ н | д з æ н и ] , "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tense=Fut" "+Person=1+Number=Plur" -> д з ы с т æ м , "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tense=Fut" "+Person=2+Number=Plur" -> д з ы с т у т , "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tense=Fut" "+Person=3+Number=Plur" -> д з ы с т ы ;
+define TrPast "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tr" "+Tense=Past" "+Person=1+Number=Sing" -> т о н , "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tr" "+Tense=Past" "+Person=2+Number=Sing" -> т а й , "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tr" "+Tense=Past" "+Person=3+Number=Sing" -> т а , "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tr" "+Tense=Past" "+Person=1+Number=Plur" -> т а м , "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tr" "+Tense=Past" "+Person=2+Number=Plur" -> т а т , "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tr" "+Tense=Past" "+Person=3+Number=Plur" -> т о й ;
+define IntrPast "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tense=Past" "+Person=1+Number=Sing" -> т æ н , "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tense=Past" "+Person=2+Number=Sing" -> т æ , "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tense=Past" "+Person=3+Number=Sing" -> [ 0 | и | и с ] , "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tense=Past" "+Person=1+Number=Plur" -> ы с т æ м , "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tense=Past" "+Person=2+Number=Plur" -> ы с т у т , "+VERB" "+VerbForm=Fin+Mood=Ind" "+Tense=Past" "+Person=3+Number=Plur"-> ы с т ы ;
+define Optative "+VERB" "+VerbForm=Fin+Mood=Opt" "+Person=1+Number=Sing" ->  и н , "+VERB" "+VerbForm=Fin+Mood=Opt" "+Person=2+Number=Sing" ->  и с , "+VERB" "+VerbForm=Fin+Mood=Opt" "+Person=3+Number=Sing" ->  и д , "+VERB" "+VerbForm=Fin+Mood=Opt" "+Person=1+Number=Plur" ->  и к к а м , "+VERB" "+VerbForm=Fin+Mood=Opt" "+Person=2+Number=Plur" ->  и к к а т , "+VERB" "+VerbForm=Fin+Mood=Opt" "+Person=3+Number=Plur" ->  и к к о й ;
+define Subjunctive "+VERB" "+VerbForm=Fin+Mood=Sub" "+Person=1+Number=Sing" ->  о н , "+VERB" "+VerbForm=Fin+Mood=Sub" "+Person=2+Number=Sing" ->  а й , "+VERB" "+VerbForm=Fin+Mood=Sub" "+Person=3+Number=Sing" ->  а , "+VERB" "+VerbForm=Fin+Mood=Sub" "+Person=1+Number=Plur" ->  æ м , "+VERB" "+VerbForm=Fin+Mood=Sub" "+Person=2+Number=Plur" ->  а т , "+VERB" "+VerbForm=Fin+Mood=Sub" "+Person=3+Number=Plur" ->  о й ;
+define TrIrreal "+VERB" "+VerbForm=Fin+Mood=Irr" "+Tr" "+Person=1+Number=Sing" ->  т а и н , "+VERB" "+VerbForm=Fin+Mood=Irr" "+Tr" "+Person=2+Number=Sing" ->  т а и с , "+VERB" "+VerbForm=Fin+Mood=Irr" "+Tr" "+Person=3+Number=Sing" ->  т а и д , "+VERB" "+VerbForm=Fin+Mood=Irr" "+Tr" "+Person=1+Number=Plur" ->  т а и к к а м , "+VERB" "+VerbForm=Fin+Mood=Irr" "+Tr" "+Person=2+Number=Plur" ->  т а и к к а т , "+VERB" "+VerbForm=Fin+Mood=Irr" "+Tr" "+Person=3+Number=Plur" ->  т а и к к о й ;
+define IntrIrreal  "+VERB" "+VerbForm=Fin+Mood=Irr" "+Person=1+Number=Sing" ->  а и н , "+VERB" "+VerbForm=Fin+Mood=Irr" "+Person=2+Number=Sing" ->  а и с , "+VERB" "+VerbForm=Fin+Mood=Irr" "+Person=3+Number=Sing" ->  а и д , "+VERB" "+VerbForm=Fin+Mood=Irr" "+Person=1+Number=Plur" ->  а и к к а м , "+VERB" "+VerbForm=Fin+Mood=Irr" "+Person=2+Number=Plur" ->  а и к к а т , "+VERB" "+VerbForm=Fin+Mood=Irr" "+Person=3+Number=Plur" ->  а и к к о й ;
+define Imperative "+VERB" "+VerbForm=Fin+Mood=Imp" "+Person=2+Number=Sing" ->  0 , "+VERB" "+VerbForm=Fin+Mood=Imp" "+Person=3+Number=Sing" -> æ д , "+VERB" "+VerbForm=Fin+Mood=Imp" "+Person=1+Number=Plur" -> æ м , "+VERB" "+VerbForm=Fin+Mood=Imp" "+Person=2+Number=Plur" -> у т , "+VERB" "+VerbForm=Fin+Mood=Imp" "+Person=3+Number=Plur" -> æ н т ;
+#define Impers
+define VDeletion [ "+VERB" | "+VerbForm=Red" ] -> 0 ;
+define Finite [ Present .o. Future .o. TrPast .o. IntrPast .o. Optative .o. Subjunctive .o. TrIrreal .o. IntrIrreal .o. Imperative  ] ;
+define VGrammar [ Verb .o. PV .o. NonFinite .o. Finite .o. VDeletion ] ;
+
+define Grammar [ NGrammar .P. VGrammar ] ;
+
+push Grammar
