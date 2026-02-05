@@ -8,7 +8,7 @@ import argparse
 from huggingface_hub import login
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--output_dir', type=str, required=True)
+#parser.add_argument('--output_dir', type=str, required=True)
 parser.add_argument('--hf_token', type=str, required=True)
 
 parser.add_argument('--model_name', type=str, required=True)
@@ -164,3 +164,4 @@ predictions = trainer.predict(test_dataset)
 print(predictions.metrics["test_Accuracy"])
 
 print(predictions.metrics["test_Sentence accuracy"])
+
