@@ -31,9 +31,9 @@ login(token=token)
 model_name = args.model_name
 tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True, add_prefix_space=True)
 urls = [
-    "https://raw.githubusercontent.com/ania3000/oss-ael-ud/master/train-ael.conllu",
-    "https://raw.githubusercontent.com/ania3000/oss-ael-ud/master/dev-ael.conllu",
-    "https://raw.githubusercontent.com/ania3000/oss-ael-ud/master/test-ael.conllu",
+    "https://raw.githubusercontent.com/ania3000/Ossetic-COT/master/train.conllu",
+    "https://raw.githubusercontent.com/ania3000/Ossetic-COT/master/dev.conllu",
+    "https://raw.githubusercontent.com/ania3000/Ossetic-COT/master/test.conllu",
 ]
 for url in urls:
     subprocess.run(["wget", url], check=True)
@@ -162,4 +162,5 @@ trainer = Trainer(
 trainer.train()
 predictions = trainer.predict(test_dataset)
 print(predictions.metrics["test_Accuracy"])
+
 print(predictions.metrics["test_Sentence accuracy"])
