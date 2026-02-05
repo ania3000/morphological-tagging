@@ -9,7 +9,6 @@ from huggingface_hub import login
 
 parser = argparse.ArgumentParser()
 #parser.add_argument('--output_dir', type=str, required=True)
-parser.add_argument('--hf_token', type=str, required=True)
 
 parser.add_argument('--model_name', type=str, required=True)
 
@@ -24,9 +23,6 @@ group.add_argument("--max_steps", type=int)
 group.add_argument("--num_train_epochs", type=int)
 
 args = parser.parse_args()
-token=args.hf_token
-
-login(token=token)
 
 model_name = args.model_name
 tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True, add_prefix_space=True)
@@ -72,9 +68,9 @@ def read_infile(infile):
         answer.append({"words": sent, "labels": labels})
     return answer
 
-train_data = read_infile("train-ael.conllu")
-dev_data = read_infile("dev-ael.conllu")
-test_data = read_infile("test-ael.conllu")
+train_data = read_infile("train.conllu")
+dev_data = read_infile("dev.conllu")
+test_data = read_infile("test.conllu")
 
 class UDDataset(Dataset):
 
@@ -140,7 +136,7 @@ training_args_kwargs = dict(
     learning_rate=args.learning_rate,
     report_to="none",
     weight_decay=0.01,
-    output_dir=args.output_dir
+    #output_dir=args.output_dir
 )
 
 if args.max_steps is not None:
@@ -164,4 +160,5 @@ predictions = trainer.predict(test_dataset)
 print(predictions.metrics["test_Accuracy"])
 
 print(predictions.metrics["test_Sentence accuracy"])
+
 
