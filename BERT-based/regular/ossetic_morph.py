@@ -9,6 +9,7 @@ from huggingface_hub import login
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--model_name', type=str, required=True)
+parser.add_argument('--hf_token', type=str, required=True)
 
 parser.add_argument("--learning_rate", type=float, default=5e-5)
 parser.add_argument('--eval_steps', type=int, default = 200)
@@ -21,6 +22,8 @@ group.add_argument("--max_steps", type=int)
 group.add_argument("--num_train_epochs", type=int)
 
 args = parser.parse_args()
+token=args.hf_token
+login(token=token)
 
 model_name = args.model_name
 tokenizer = AutoTokenizer.from_pretrained(model_name, use_fast=True, add_prefix_space=True)
@@ -157,3 +160,4 @@ trainer.train()
 predictions = trainer.predict(test_dataset)
 print(predictions.metrics["test_Accuracy"])
 print(predictions.metrics["test_Sentence accuracy"])
+
