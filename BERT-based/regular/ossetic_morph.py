@@ -8,8 +8,6 @@ import argparse
 from huggingface_hub import login
 
 parser = argparse.ArgumentParser()
-#parser.add_argument('--output_dir', type=str, required=True)
-
 parser.add_argument('--model_name', type=str, required=True)
 
 parser.add_argument("--learning_rate", type=float, default=5e-5)
@@ -158,7 +156,4 @@ trainer = Trainer(
 trainer.train()
 predictions = trainer.predict(test_dataset)
 print(predictions.metrics["test_Accuracy"])
-
 print(predictions.metrics["test_Sentence accuracy"])
-
-
