@@ -30,7 +30,7 @@ define NonFinMark [ "+VerbForm=Inf" | "+VerbForm=Inf2" | "+VerbForm=Part+Tense=P
 #define Noun Stem NounMark NumberMark CaseMark ;
 define Nominal ( PVMark | PNMark ) [ Stem [ AdpMark | IntjMark | Xmark ] | PropStem PropMark (PlurMark) CaseMark | Stem (NonFinMark) (CmpMark) [ [ AdjMark | AdvMark ] | NounMark (NumberMark) CaseMark ] ] ;
 
-define PV "Prefix=Yes+" -> [ А | а | Б а | б а | Н ы | н ы | Р а | р а | Æ р | æ р | р | Æ р б а | æ р б а | р б а | С | с | Ы с | ы с | Ф æ | ф æ | Ф е | ф е ] ;
+define PV "Preverb=Yes+" -> [ А | а | Б а | б а | Н ы | н ы | Р а | р а | Æ р | æ р | р | Æ р б а | æ р б а | р б а | С | с | Ы с | ы с | Ф æ | ф æ | Ф е | ф е ] ;
 define PN "Prenoun=Yes+" -> [ æ н æ | Æ н æ | æ д | Æ д ] ;
 define NonFinite "+VerbForm=Inf" -> ы н , "+VerbForm=Inf2" -> æ н , "+VerbForm=Part+Tense=Past+Voice=Pass" -> 0 , "+VerbForm=Part+Tense=Pres+Voice=Act" -> æ г , "+VerbForm=Part2+Tense=Pres+Voice=Act" -> а г , "+VerbForm=Part+Tense=Fut+Voice=Pass" -> и н а г , "+VerbForm=Conv" -> г æ ;
 define Compar "+Degree=Cmp" -> д æ р ;
@@ -66,5 +66,6 @@ define Finite [ Present .o. Future .o. TrPast .o. IntrPast .o. Optative .o. Subj
 define VGrammar [ Verb .o. PV .o. NonFinite .o. Finite .o. VDeletion ] ;
 
 define Grammar [ NGrammar .P. VGrammar ] ;
+
 
 push Grammar
