@@ -1,0 +1,365 @@
+### oss_proto.foma ###
+
+define V [ а | е | ё | и | о | у | ы | э | ю | я | ӕ ] ; 
+define C [ б | в | г | д | ж | з | й | к | л | м | н | п | р | с | т | ф | х | ц | ч | ш | щ | ъ | ь ] ;
+
+define YInsertion [..] -> ы || C _ "$" т ;
+
+define JInsertion [..] -> й || V "$" _ V ;
+
+define ExAbl й -> 0 || V "$" й ӕ _ ;
+
+define NCleanup "$" -> 0 ;
+
+define Cleanup "^" -> 0;
+
+### 1 Sg
+define 1SgNom [ [ {ӕз} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Case=Nom" .x. {ӕз} ] ] ;
+define 1SgGen [ [ {ӕз} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Case=Gen" .x. {мӕн} ] | [ {ӕз} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Case=Gen" .x. {мӕ} ] ] ;
+define 1SgDat [ [ {ӕз} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Case=Dat" .x. {мӕнӕн} ] | [ {ӕз} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Case=Dat" .x. {мын} ] ] ;
+define 1SgAll [ [ {ӕз} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Case=All" .x. {мӕнмӕ} ] | [ {ӕз} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Case=All" .x. {мӕм} ] ] ;
+define 1SgAbl [ [ {ӕз} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Case=Abl" .x. {мӕнӕй} ] | [ {ӕз} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Case=Abl" .x. {мӕ} ] ] ;
+define 1SgIne [ [ {ӕз} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Case=Ine" .x. {мӕ} ] ] ;
+define 1SgSup [ [ {ӕз} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Case=Sup" .x. {мӕныл} ] | [ {ӕз} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Case=Sup" .x. {мыл} ] ] ;
+define 1SgEqu [ [ {ӕз} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Case=Equ" .x. {мӕнау} ] ] ;
+define 1SgCom [ [ {ӕз} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Case=Com" .x. {мӕнимӕ} ] | [ {мӕхӕдӕг} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Case=Com" .x. {мемӕ} ] ] ;
+define 1SgReflNom [ [ {мӕхӕдӕг} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Reflex=Yes+Case=Nom" .x. {мӕхӕдӕг} ] | [ {мӕхӕдӕг} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Reflex=Yes+Case=Nom" .x. {мӕхуыддӕг} ] ] ;
+define 1SgReflGen [ [ {мӕхӕдӕг} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Reflex=Yes+Case=Gen" .x. {мӕхи} ] ] ;
+define 1SgReflDat [ [ {мӕхӕдӕг} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Reflex=Yes+Case=Dat" .x. {мӕхицӕн} ] ] ;
+define 1SgReflAll [ [ {мӕхӕдӕг} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Reflex=Yes+Case=All" .x. {мӕхимӕ} ] ] ;
+define 1SgReflAbl [ [ {мӕхӕдӕг} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Reflex=Yes+Case=Abl" .x. {мӕхицӕй} ] ] ;
+define 1SgReflIne [ [ {мӕхӕдӕг} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Reflex=Yes+Case=Ine" .x. {мӕхи} ] ] ;
+define 1SgReflSup [ [ {мӕхӕдӕг} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Reflex=Yes+Case=Sup" .x. {мӕхиуыл} ] ] ;
+define 1SgReflEqu [ [ {мӕхӕдӕг} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Reflex=Yes+Case=Equ" .x. {мӕхийау} ] ] ;
+define 1SgReflCom [ [ {мӕхӕдӕг} "+PRON+PronType=Prs+Person=1" "+Number=Sing+Reflex=Yes+Case=Com" .x. {мӕхиимӕ} ] ] ;
+define 1Sg [ 1SgNom | 1SgGen | 1SgDat | 1SgAll | 1SgAbl | 1SgIne | 1SgSup | 1SgEqu | 1SgCom | 1SgReflNom | 1SgReflGen | 1SgReflDat | 1SgReflAll | 1SgReflAbl | 1SgReflIne | 1SgReflSup | 1SgReflEqu | 1SgReflCom ] ;
+
+### 2 Sg
+define 2SgNom [ [ {ды} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Case=Nom" .x. {ды} ] ] ;
+define 2SgGen [ [ {ды} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Case=Gen" .x. {дӕу} ] | [ {ды} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Case=Gen" .x. {дӕ} ] ] ;
+define 2SgDat [ [ {ды} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Case=Dat" .x. {дӕуӕн} ] | [ {ды} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Case=Dat" .x. {дын} ] ] ;
+define 2SgAll [ [ {ды} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Case=All" .x. {дӕумӕ} ] | [ {ды} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Case=All" .x. {дӕм} ] ] ;
+define 2SgAbl [ [ {ды} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Case=Abl" .x. {дӕуӕй} ] | [ {ды} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Case=Abl" .x. {дӕ} ] ] ;
+define 2SgIne [ [ {ды} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Case=Ine" .x. {дӕ} ] ] ;
+define 2SgSup [ [ {ды} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Case=Sup" .x. {дӕуыл} ] | [ {ды} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Case=Sup" .x. {дыл} ] ] ;
+define 2SgEqu [ [ {ды} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Case=Equ" .x. {дӕуау} ] ] ;
+define 2SgCom [ [ {ды} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Case=Com" .x. {дӕуимӕ} ] | [ {ды} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Case=Com" .x. {демӕ} ] ] ;
+define 2SgReflNom [ [ {дӕхӕдӕг} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Reflex=Yes+Case=Nom" .x. {дӕхӕдӕг} ] | [ {дӕхӕдӕг} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Reflex=Yes+Case=Nom" .x. {дӕхуыддӕг} ] ] ;
+define 2SgReflGen [ [ {дӕхӕдӕг} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Reflex=Yes+Case=Gen" .x. {дӕхи} ] ] ;
+define 2SgReflDat [ [ {дӕхӕдӕг} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Reflex=Yes+Case=Dat" .x. {дӕхицӕн} ] ] ;
+define 2SgReflAll [ [ {дӕхӕдӕг} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Reflex=Yes+Case=All" .x. {дӕхимӕ} ] ] ;
+define 2SgReflAbl [ [ {дӕхӕдӕг} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Reflex=Yes+Case=Abl" .x. {дӕхицӕй} ] ] ;
+define 2SgReflIne [ [ {дӕхӕдӕг} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Reflex=Yes+Case=Ine" .x. {дӕхи} ] ] ;
+define 2SgReflSup [ [ {дӕхӕдӕг} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Reflex=Yes+Case=Sup" .x. {дӕхиуыл} ] ] ;
+define 2SgReflEqu [ [ {дӕхӕдӕг} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Reflex=Yes+Case=Equ" .x. {дӕхийау} ] ] ;
+define 2SgReflCom [ [ {дӕхӕдӕг} "+PRON+PronType=Prs+Person=2" "+Number=Sing+Reflex=Yes+Case=Com" .x. {дӕхиимӕ} ] ] ;
+define 2Sg [ 2SgNom | 2SgGen | 2SgDat | 2SgAll | 2SgAbl | 2SgIne | 2SgSup | 2SgEqu | 2SgCom | 2SgReflNom | 2SgReflGen | 2SgReflDat | 2SgReflAll | 2SgReflAbl | 2SgReflIne | 2SgReflSup | 2SgReflEqu | 2SgReflCom ] ;
+
+### 3 Sg
+define 3SgGen [ [ {уый} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Case=Gen" .x. {ӕй} ] | [ {уый} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Case=Gen" .x. {йӕ} ] ] ;
+define 3SgDat [ [ {уый} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Case=Dat" .x. {ын} ] | [ {уый} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Case=Dat" .x. {йын} ] ] ;
+define 3SgAll [ [ {уый} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Case=All" .x. {ӕм} ] | [ {уый} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Case=All" .x. {йӕм} ] ] ;
+define 3SgIne [ [ {уый} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Case=Ine" .x. {ӕй} ] | [ {уый} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Case=Ine" .x. {йӕ} ] | [ {уый} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Case=Ine" .x. {дзы} ] ] ;
+define 3SgAbl [ [ {уый} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Case=Abl" .x. {ӕй} ] | [ {уый} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Case=Abl" .x. {йӕ} ] | [ {уый} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Case=Abl" .x. {дзы} ] ] ;
+define 3SgSup [ [ {уый} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Case=Sup" .x. {ыл} ] | [ {уый} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Case=Sup" .x. {йыл} ] ] ;
+define 3SgCom [ [ {уый} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Case=Com" .x. {йемӕ} ] ] ;
+define 3SgReflNom [ [ {йӕхӕдӕг} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Reflex=Yes+Case=Nom" .x. {йӕхӕдӕг} ] | [ {йӕхӕдӕг} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Reflex=Yes+Case=Nom" .x. {йӕхуыддӕг} ] ] ;
+define 3SgReflGen [ [ {йӕхӕдӕг} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Reflex=Yes+Case=Gen" .x. {йӕхи} ] ] ;
+define 3SgReflDat [ [ {йӕхӕдӕг} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Reflex=Yes+Case=Dat" .x. {йӕхицӕн} ] ] ;
+define 3SgReflAll [ [ {йӕхӕдӕг} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Reflex=Yes+Case=All" .x. {йӕхимӕ} ] ] ;
+define 3SgReflIne [ [ {йӕхӕдӕг} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Reflex=Yes+Case=Ine" .x. {йӕхи} ] ] ;
+define 3SgReflAbl [ [ {йӕхӕдӕг} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Reflex=Yes+Case=Abl" .x. {йӕхицӕй} ] ] ;
+define 3SgReflSup [ [ {йӕхӕдӕг} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Reflex=Yes+Case=Sup" .x. {йӕхиуыл} ] ] ;
+define 3SgReflEqu [ [ {йӕхӕдӕг} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Reflex=Yes+Case=Equ" .x. {йӕхийау} ] ] ;
+define 3SgReflCom [ [ {йӕхӕдӕг} "+PRON+PronType=Prs+Person=3" "+Number=Sing+Reflex=Yes+Case=Com" .x. {йӕхиимӕ} ] ] ;
+define 3Sg [ 3SgNom | 3SgGen | 3SgDat | 3SgAll | 3SgAbl | 3SgIne | 3SgSup | 3SgEqu | 3SgCom | 3SgReflNom | 3SgReflGen | 3SgReflDat | 3SgReflAll | 3SgReflAbl | 3SgReflIne | 3SgReflSup | 3SgReflEqu | 3SgReflCom ] ;
+
+### 1 Pl
+define 1PlNom [ [ {мах} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Case=Nom" .x. {мах} ] ] ;
+define 1PlGen [ [ {мах} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Case=Gen" .x. {мах} ] | [ {мах} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Case=Gen" .x. {нӕ} ] ] ;
+define 1PlDat [ [ {мах} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Case=Dat" .x. {махӕн} ] | [ {мах} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Case=Dat" .x. {нын} ] ] ;
+define 1PlAll [ [ {мах} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Case=All" .x. {махмӕ} ] | [ {мах} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Case=All" .x. {нӕм} ] ] ;
+define 1PlIne [ [ {мах} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Case=Ine" .x. {нӕ} ] ] ;
+define 1PlAbl [ [ {мах} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Case=Abl" .x. {махӕй} ] | [ {мах} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Case=Abl" .x. {нӕ} ] ] ;
+define 1PlSup [ [ {мах} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Case=Sup" .x. {махыл} ] | [ {мах} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Case=Sup" .x. {ныл} ] ] ;
+define 1PlEqu [ [ {мах} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Case=Equ" .x. {махау} ] ] ;
+define 1PlCom [ [ {мах} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Case=Com" .x. {махимӕ} ] | [ {мах} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Case=Com" .x. {немӕ} ] ] ;
+define 1PlReflNom [ [ {нӕхӕдӕг} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Reflex=Yes+Case=Nom" .x. {нӕхӕдӕг} ] | [ {нӕхӕдӕг} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Reflex=Yes+Case=Nom" .x. {нӕхуыддӕг} ] ] ;
+define 1PlReflGen [ [ {нӕхӕдӕг} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Reflex=Yes+Case=Gen" .x. {нӕхи} ] ] ;
+define 1PlReflDat [ [ {нӕхӕдӕг} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Reflex=Yes+Case=Dat" .x. {нӕхицӕн} ] ] ;
+define 1PlReflAll [ [ {нӕхӕдӕг} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Reflex=Yes+Case=All" .x. {нӕхимӕ} ] ] ;
+define 1PlReflIne [ [ {нӕхӕдӕг} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Reflex=Yes+Case=Ine" .x. {нӕхи} ] ] ;
+define 1PlReflAbl [ [ {нӕхӕдӕг} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Reflex=Yes+Case=Abl" .x. {нӕхицӕй} ] ] ;
+define 1PlReflSup [ [ {нӕхӕдӕг} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Reflex=Yes+Case=Sup" .x. {нӕхиуыл} ] ] ;
+define 1PlReflEqu [ [ {нӕхӕдӕг} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Reflex=Yes+Case=Equ" .x. {нӕхийау} ] ] ;
+define 1PlReflCom [ [ {нӕхӕдӕг} "+PRON+PronType=Prs+Person=1" "+Number=Plur+Reflex=Yes+Case=Com" .x. {нӕхиимӕ} ] ] ;
+define 1Pl [ 1PlNom | 1PlGen | 1PlDat | 1PlAll | 1PlAbl | 1PlIne | 1PlSup | 1PlEqu | 1PlCom | 1PlReflNom | 1PlReflGen | 1PlReflDat | 1PlReflAll | 1PlReflAbl | 1PlReflIne | 1PlReflSup | 1PlReflEqu | 1PlReflCom ] ;
+
+### 2 Pl
+define 2PlNom [ [ {сымах} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Case=Nom" .x. {сымах} ] ] ;
+define 2PlGen [ [ {сымах} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Case=Gen" .x. {сымах} ] | [ {сымах} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Case=Gen" .x. {уӕ} ] ] ;
+define 2PlDat [ [ {сымах} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Case=Dat" .x. {сымахӕн} ] | [ {сымах} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Case=Dat" .x. {уын} ] ] ;
+define 2PlAll [ [ {сымах} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Case=All" .x. {сымахмӕ} ] | [ {сымах} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Case=All" .x. {уӕм} ] ] ;
+define 2PlIne [ [ {сымах} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Case=Ine" .x. {уӕ} ] ] ;
+define 2PlAbl [ [ {сымах} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Case=Abl" .x. {сымахӕй} ] | [ {сымах} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Case=Abl" .x. {уӕ} ] ] ;
+define 2PlSup [ [ {сымах} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Case=Sup" .x. {сымахыл} ] | [ {сымах} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Case=Sup" .x. {уыл} ] ] ;
+define 2PlEqu [ [ {сымах} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Case=Equ" .x. {сымахау} ] ] ;
+define 2PlCom [ [ {сымах} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Case=Com" .x. {сымахимӕ} ] | [ {сымахимӕ} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Case=Com" .x. {уемӕ} ] ] ;
+define 2PlReflNom [ [ {уӕхӕдӕг} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Reflex=Yes+Case=Nom" .x. {уӕхӕдӕг} ] | [ {уӕхӕдӕг} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Reflex=Yes+Case=Nom" .x. {уӕхуыддӕг} ] ] ;
+define 2PlReflGen [ [ {уӕхӕдӕг} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Reflex=Yes+Case=Gen" .x. {уӕхи} ] ] ;
+define 2PlReflDat [ [ {уӕхӕдӕг} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Reflex=Yes+Case=Dat" .x. {уӕхицӕн} ] ] ;
+define 2PlReflAll [ [ {уӕхӕдӕг} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Reflex=Yes+Case=All" .x. {уӕхимӕ} ] ] ;
+define 2PlReflIne [ [ {уӕхӕдӕг} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Reflex=Yes+Case=Ine" .x. {уӕхи} ] ] ;
+define 2PlReflAbl [ [ {уӕхӕдӕг} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Reflex=Yes+Case=Abl" .x. {уӕхицӕй} ] ] ;
+define 2PlReflSup [ [ {уӕхӕдӕг} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Reflex=Yes+Case=Sup" .x. {уӕхиуыл} ] ] ;
+define 2PlReflEqu [ [ {уӕхӕдӕг} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Reflex=Yes+Case=Equ" .x. {уӕхийау} ] ] ;
+define 2PlReflCom [ [ {уӕхӕдӕг} "+PRON+PronType=Prs+Person=2" "+Number=Plur+Reflex=Yes+Case=Com" .x. {уӕхиимӕ} ] ] ;
+define 2Pl [ 2PlNom | 2PlGen | 2PlDat | 2PlAll | 2PlAbl | 2PlIne | 2PlSup | 2PlEqu | 2PlCom | 2PlReflNom | 2PlReflGen | 2PlReflDat | 2PlReflAll | 2PlReflAbl | 2PlReflIne | 2PlReflSup | 2PlReflEqu | 2PlReflCom ] ;
+
+### 3 Pl
+define 3PlGen [ [ {уыдон} "+PRON+PronType=Prs+Person=3" "+Number=Plur+Case=Gen" .x. {сӕ} ] ] ;
+define 3PlDat [ [ {уыдон} "+PRON+PronType=Prs+Person=3" "+Number=Plur+Case=Dat" .x. {сын} ] ] ;
+define 3PlAll [ [ {уыдон} "+PRON+PronType=Prs+Person=3" "+Number=Plur+Case=All" .x. {сӕм} ] ] ;
+define 3PlIne [ [ {уыдон} "+PRON+PronType=Prs+Person=3" "+Number=Plur+Case=Ine" .x. {сӕ} ] | [ {уыдон} "+PRON+PronType=Prs+Person=3" "+Number=Plur+Case=Ine" .x. {дзы} ] ] ;
+define 3PlAbl [ [ {уыдон} "+PRON+PronType=Prs+Person=3" "+Number=Plur+Case=Abl" .x. {сӕ} ] | [ {уыдон} "+PRON+PronType=Prs+Person=3" "+Number=Plur+Case=Abl" .x. {дзы} ] ] ;
+define 3PlSup [ [ {уыдон} "+PRON+PronType=Prs+Person=3" "+Number=Plur+Case=Sup" .x. {сыл} ] ] ;
+define 3PlCom [ [ {уыдон} "+PRON+PronType=Prs+Person=3" "+Number=Plur+Case=Com" .x. {семӕ} ] ] ;
+define 3PlReflNom [ [ {сӕхӕдӕг} "+PRON+PronType=Prs+Person=3" "+Number=Plur+Reflex=Yes+Case=Nom" .x. {сӕхӕдӕг} ] | [ {сӕхӕдӕг} "+PRON+PronType=Prs+Person=3" "+Number=Plur+Reflex=Yes+Case=Nom" .x. {сӕхуыддӕг} ] ] ;
+define 3PlReflGen [ [ {сӕхӕдӕг} "+PRON+PronType=Prs+Person=3" "+Number=Plur+Reflex=Yes+Case=Gen" .x. {сӕхи} ] ] ;
+define 3PlReflDat [ [ {сӕхӕдӕг} "+PRON+PronType=Prs+Person=3" "+Number=Plur+Reflex=Yes+Case=Dat" .x. {сӕхицӕн} ] ] ;
+define 3PlReflAll [ [ {сӕхӕдӕг} "+PRON+PronType=Prs+Person=3" "+Number=Plur+Reflex=Yes+Case=All" .x. {сӕхимӕ} ] ] ;
+define 3PlReflIne [ [ {сӕхӕдӕг} "+PRON+PronType=Prs+Person=3" "+Number=Plur+Reflex=Yes+Case=Ine" .x. {сӕхи} ] ] ;
+define 3PlReflAbl [ [ {сӕхӕдӕг} "+PRON+PronType=Prs+Person=3" "+Number=Plur+Reflex=Yes+Case=Abl" .x. {сӕхицӕй} ] ] ;
+define 3PlReflSup [ [ {сӕхӕдӕг} "+PRON+PronType=Prs+Person=3" "+Number=Plur+Reflex=Yes+Case=Sup" .x. {сӕхиуыл} ] ] ;
+define 3PlReflEqu [ [ {сӕхӕдӕг} "+PRON+PronType=Prs+Person=3" "+Number=Plur+Reflex=Yes+Case=Equ" .x. {сӕхийау} ] ] ;
+define 3PlReflCom [ [ {сӕхӕдӕг} "+PRON+PronType=Prs+Person=3" "+Number=Plur+Reflex=Yes+Case=Com" .x. {сӕхиимӕ} ] ] ;
+define 3Pl [ 3PlNom | 3PlGen | 3PlDat | 3PlAll | 3PlAbl | 3PlIne | 3PlSup | 3PlEqu | 3PlCom | 3PlReflNom | 3PlReflGen | 3PlReflDat | 3PlReflAll | 3PlReflAbl | 3PlReflIne | 3PlReflSup | 3PlReflEqu | 2PlReflCom ] ;
+
+define PronPrs 1Sg | 2Sg | 3Sg | 1Pl | 2Pl | 3Pl ;
+
+### глагольное
+
+define bePresNeg3Sg [ [ {уӕв} "+AUX+Mood=Ind+Number=Sing+Person=3+Polarity=Neg+Tense=Pres+VerbForm=Fin" .x. {нӕу} ] | [ {уӕв} "+AUX+Mood=Ind+Number=Sing+Person=3+Polarity=Neg+Tense=Pres+VerbForm=Fin" .x. {нӕй} ] ] ;
+define bePres1Sg [ [ {уӕв} "+AUX+Mood=Ind+Number=Sing+Person=1+Tense=Pres+VerbForm=Fin" .x. {дӕн} ] ] ;
+define bePres2Sg [ [ {уӕв} "+AUX+Mood=Ind+Number=Sing+Person=2+Tense=Pres+VerbForm=Fin" .x. {дӕ} ] ] ;
+define bePres3Sg [ [ {уӕв} "+AUX+Mood=Ind+Number=Sing+Person=3+Tense=Pres+VerbForm=Fin" .x. {у} ] | [ {у} "+AUX+Mood=Ind+Number=Sing+Person=3+Tense=Pres+VerbForm=Fin" .x. {и} ] | [ {у} "+AUX+Mood=Ind+Number=Sing+Person=3+Tense=Pres+VerbForm=Fin" .x. {ис} ] ] ;
+define bePres1Pl [ [ {уӕв} "+AUX+Mood=Ind+Number=Plur+Person=1+Tense=Pres+VerbForm=Fin" .x. {стӕм} ] ] ;
+define bePres2Pl [ [ {уӕв} "+AUX+Mood=Ind+Number=Plur+Person=2+Tense=Pres+VerbForm=Fin" .x. {стут} ] ] ;
+define bePres3Pl [ [ {уӕв} "+AUX+Mood=Ind+Number=Plur+Person=3+Tense=Pres+VerbForm=Fin" .x. {сты} ] ] ;
+define beOpt1Sg [ [ {уӕв} "+AUX+Mood=Opt+Number=Sing+Person=1+VerbForm=Fin" .x. {уаин} ] ] ;
+define beOpt2Sg [ [ {уӕв} "+AUX+Mood=Opt+Number=Sing+Person=2+VerbForm=Fin" .x. {уаис} ] ] ;
+define beOpt3Sg [ [ {уӕв} "+AUX+Mood=Opt+Number=Sing+Person=3+VerbForm=Fin" .x. {уаид} ] ] ;
+define beOpt1Pl [ [ {уӕв} "+AUX+Mood=Opt+Number=Plur+Person=1+VerbForm=Fin" .x. {уаиккам} ] ] ;
+define beOpt2Pl [ [ {уӕв} "+AUX+Mood=Opt+Number=Plur+Person=2+VerbForm=Fin" .x. {уаиккат} ] ] ;
+define beOpt3Pl [ [ {уӕв} "+AUX+Mood=Opt+Number=Plur+Person=3+VerbForm=Fin" .x. {уаиккой} ] ] ;
+define be [ bePresNeg3Sg | bePres1Sg | bePres2Sg | bePres3Sg | bePres1Pl | bePres2Pl | bePres3Pl | beOpt1Sg | beOpt2Sg | beOpt3Sg | beOpt1Pl | beOpt2Pl | beOpt3Pl ] ;
+
+define beVPresNeg3Sg [ [ {уӕв} "+VERB+Mood=Ind+Number=Sing+Person=3+Polarity=Neg+Tense=Pres+VerbForm=Fin" .x. {нӕу} ] | [ {уӕв} "+VERB+Mood=Ind+Number=Sing+Person=3+Polarity=Neg+Tense=Pres+VerbForm=Fin" .x. {нӕй} ] | [ {мӕгъа} "+VERB+Mood=Ind+Number=Sing+Person=3+Polarity=Neg+Tense=Pres+VerbForm=Fin" .x. {мӕгъа} ] ] ;
+define beVPres1Sg [ [ {уӕв} "+VERB+Mood=Ind+Number=Sing+Person=1+Tense=Pres+VerbForm=Fin" .x. {дӕн} ] ] ;
+define beVPres2Sg [ [ {уӕв} "+VERB+Mood=Ind+Number=Sing+Person=2+Tense=Pres+VerbForm=Fin" .x. {дӕ} ] ] ;
+define beVPres3Sg [ [ {уӕв} "+VERB+Mood=Ind+Number=Sing+Person=3+Tense=Pres+VerbForm=Fin" .x. {у} ] | [ {у} "+VERB+Mood=Ind+Number=Sing+Person=3+Tense=Pres+VerbForm=Fin" .x. {и} ] | [ {у} "+VERB+Mood=Ind+Number=Sing+Person=3+Tense=Pres+VerbForm=Fin" .x. {ис} ] ] ;
+define beVPres1Pl [ [ {уӕв} "+VERB+Mood=Ind+Number=Plur+Person=1+Tense=Pres+VerbForm=Fin" .x. {стӕм} ] ] ;
+define beVPres2Pl [ [ {уӕв} "+VERB+Mood=Ind+Number=Plur+Person=2+Tense=Pres+VerbForm=Fin" .x. {стут} ] ] ;
+define beVPres3Pl [ [ {уӕв} "+VERB+Mood=Ind+Number=Plur+Person=3+Tense=Pres+VerbForm=Fin" .x. {сты} ] ] ;
+define beVOpt1Sg [ [ {уӕв} "+VERB+Mood=Opt+Number=Sing+Person=1+VerbForm=Fin" .x. {уаин} ] ] ;
+define beVOpt2Sg [ [ {уӕв} "+VERB+Mood=Opt+Number=Sing+Person=2+VerbForm=Fin" .x. {уаис} ] ] ;
+define beVOpt3Sg [ [ {уӕв} "+VERB+Mood=Opt+Number=Sing+Person=3+VerbForm=Fin" .x. {уаид} ] ] ;
+define beVOpt1Pl [ [ {уӕв} "+VERB+Mood=Opt+Number=Plur+Person=1+VerbForm=Fin" .x. {уаиккам} ] ] ;
+define beVOpt2Pl [ [ {уӕв} "+VERB+Mood=Opt+Number=Plur+Person=2+VerbForm=Fin" .x. {уаиккат} ] ] ;
+define beVOpt3Pl [ [ {уӕв} "+VERB+Mood=Opt+Number=Plur+Person=3+VerbForm=Fin" .x. {уаиккой} ] ] ;
+define beV [ beVPresNeg3Sg | beVPres1Sg | beVPres2Sg | beVPres3Sg | beVPres1Pl | beVPres2Pl | beVPres3Pl | beVOpt1Sg | beVOpt2Sg | beVOpt3Sg | beVOpt1Pl | beVOpt2Pl | beVOpt3Pl ] ;
+
+### Int
+define IntSgNom [ [ {цы} "+PRON+PronType=Int+Number=Sing+Case=Nom" .x. {цы} ] | [ {чи} "+PRON+PronType=Int+Number=Sing+Case=Nom" .x. {чи} ] ] ;
+define IntSgGen [ [ {цы} "+PRON+PronType=Int+Number=Sing+Case=Gen" .x. {цӕй} ] | [ {чи} "+PRON+PronType=Int+Number=Sing+Case=Gen" .x. {кӕй} ] ] ;
+define IntSgDat [ [ {цы} "+PRON+PronType=Int+Number=Sing+Case=Dat" .x. {цӕмӕн} ] | [ {чи} "+PRON+PronType=Int+Number=Sing+Case=Dat" .x. {кӕмӕн} ] ] ;
+define IntSgAll [ [ {цы} "+PRON+PronType=Int+Number=Sing+Case=All" .x. {цӕмӕ} ] | [ {чи} "+PRON+PronType=Int+Number=Sing+Case=All" .x. {кӕмӕ} ] ] ;
+define IntSgIne [ [ {цы} "+PRON+PronType=Int+Number=Sing+Case=Ine" .x. {цӕм} ] | [ {чи} "+PRON+PronType=Int+Number=Sing+Case=Ine" .x. {кӕм} ] ] ;
+define IntSgAbl [ [ {цы} "+PRON+PronType=Int+Number=Sing+Case=Abl" .x. {цӕмӕй} ] | [ {чи} "+PRON+PronType=Int+Number=Sing+Case=Abl" .x. {кӕмӕй} ] ] ;
+define IntSgSup [ [ {цы} "+PRON+PronType=Int+Number=Sing+Case=Sup" .x. {цӕуыл} ] | [ {чи} "+PRON+PronType=Int+Number=Sing+Case=Sup" .x. {кӕуыл} ] ] ;
+define IntSgEqu [ [ {цы} "+PRON+PronType=Int+Number=Sing+Case=Equ" .x. {цӕйау} ] | [ {чи} "+PRON+PronType=Int+Number=Sing+Case=Equ" .x. {кӕйау} ] ] ;
+define IntSgCom [ [ {цы} "+PRON+PronType=Int+Number=Sing+Case=Com" .x. {цӕимӕ} ] | [ {чи} "+PRON+PronType=Int+Number=Sing+Case=Com" .x. {кӕимӕ} ] ] ;
+define IntPlNom [ [ {цы} "+PRON+PronType=Int+Number=Plur+Case=Nom" .x. {цытӕ} ] | [ {чи} "+PRON+PronType=Int+Number=Plur+Case=Nom" .x. {читӕ} ] ] ;
+define IntPlGen [ [ {цы} "+PRON+PronType=Int+Number=Plur+Case=Gen" .x. {цӕйты} ] | [ {чи} "+PRON+PronType=Int+Number=Plur+Case=Gen" .x. {кӕйты} ] ] ;
+define IntPlDat [ [ {цы} "+PRON+PronType=Int+Number=Plur+Case=Dat" .x. {цӕмӕнты} ] | [ {чи} "+PRON+PronType=Int+Number=Plur+Case=Dat" .x. {кӕмӕнты} ] ] ;
+define IntPlAll [ [ {цы} "+PRON+PronType=Int+Number=Plur+Case=All" .x. {цӕмӕты} ] | [ {чи} "+PRON+PronType=Int+Number=Plur+Case=All" .x. {кӕмӕты} ] ] ;
+define IntPlIne [ [ {цы} "+PRON+PronType=Int+Number=Plur+Case=Ine" .x. {цӕмыты} ] | [ {чи} "+PRON+PronType=Int+Number=Plur+Case=Ine" .x. {кӕмыты} ] ] ;
+define IntPlAbl [ [ {цы} "+PRON+PronType=Int+Number=Plur+Case=Abl" .x. {цӕмӕйты} ] | [ {чи} "+PRON+PronType=Int+Number=Plur+Case=Abl" .x. {кӕмӕйты} ] ] ;
+define IntPlSup [ [ {цы} "+PRON+PronType=Int+Number=Plur+Case=Sup" .x. {цӕуылты} ] | [ {чи} "+PRON+PronType=Int+Number=Plur+Case=Sup" .x. {кӕуылты} ] ] ;
+define IntPlEqu [ [ {цы} "+PRON+PronType=Int+Number=Plur+Case=Equ" .x. {цӕйауты} ] | [ {чи} "+PRON+PronType=Int+Number=Plur+Case=Equ" .x. {кӕйауты} ] ] ;
+define IntPlCom [ [ {цы} "+PRON+PronType=Int+Number=Plur+Case=Com" .x. {цӕимӕты} ] | [ {чи} "+PRON+PronType=Int+Number=Plur+Case=Com" .x. {кӕимӕты} ] ] ;
+define Int [ IntSgNom | IntSgGen | IntSgDat | IntSgAll | IntSgAbl | IntSgIne | IntSgSup | IntSgEqu | IntSgCom | IntPlNom | IntPlGen | IntPlDat | IntPlAll | IntPlAbl | IntPlIne | IntPlSup | IntPlEqu | IntPlCom ] ;
+
+### Ind
+define IndSgNom [ [ {исты} "+PRON+PronType=Ind+Number=Sing+Case=Nom" .x. {исты} ] | [ {исты} "+PRON+PronType=Ind+Number=Sing+Case=Nom" .x. {исчи} ] ] ;
+define IndSgGen [ [ {истӕй} "+PRON+PronType=Ind+Number=Sing+Case=Gen" .x. {истӕй} ] | [ {истӕй} "+PRON+PronType=Ind+Number=Sing+Case=Gen" .x. {искӕй} ] ] ;
+define IndSgDat [ [ {истӕмӕн} "+PRON+PronType=Ind+Number=Sing+Case=Dat" .x. {истӕмӕн} ] | [ {истӕмӕн} "+PRON+PronType=Ind+Number=Sing+Case=Dat" .x. {искӕмӕн} ] ] ;
+define IndSgAll [ [ {истӕмӕ} "+PRON+PronType=Ind+Number=Sing+Case=All" .x. {истӕмӕ} ] | [ {истӕмӕ} "+PRON+PronType=Ind+Number=Sing+Case=All" .x. {искӕмӕ} ] ] ;
+define IndSgIne [ [ {истӕм} "+PRON+PronType=Ind+Number=Sing+Case=Ine" .x. {истӕм} ] | [ {истӕм} "+PRON+PronType=Ind+Number=Sing+Case=Ine" .x. {искӕм} ] ] ;
+define IndSgAbl [ [ {истӕмӕй} "+PRON+PronType=Ind+Number=Sing+Case=Abl" .x. {истӕмӕй} ] | [ {истӕмӕй} "+PRON+PronType=Ind+Number=Sing+Case=Abl" .x. {искӕмӕй} ] ] ;
+define IndSgSup [ [ {истӕуыл} "+PRON+PronType=Ind+Number=Sing+Case=Sup" .x. {истӕуыл} ] | [ {истӕуыл} "+PRON+PronType=Ind+Number=Sing+Case=Sup" .x. {искӕуыл} ] ] ;
+define IndSgEqu [ [ {истӕйау} "+PRON+PronType=Ind+Number=Sing+Case=Equ" .x. {истӕйау} ] | [ {истӕйау} "+PRON+PronType=Ind+Number=Sing+Case=Equ" .x. {искӕйау} ] ] ;
+define IndSgCom [ [ {истӕимӕ} "+PRON+PronType=Ind+Number=Sing+Case=Com" .x. {истӕимӕ} ] | [ {истӕимӕ} "+PRON+PronType=Ind+Number=Sing+Case=Com" .x. {искӕимӕ} ] ] ;
+define IndPlNom [ [ {истытӕ} "+PRON+PronType=Ind+Number=Plur+Case=Nom" .x. {истытӕ} ] | [ {истытӕ} "+PRON+PronType=Ind+Number=Plur+Case=Nom" .x. {исчитӕ} ] ] ;
+define IndPlGen [ [ {истӕйты} "+PRON+PronType=Ind+Number=Plur+Case=Gen" .x. {истӕйты} ] | [ {истӕйты} "+PRON+PronType=Ind+Number=Plur+Case=Gen" .x. {искӕйты} ] ] ;
+define IndPlDat [ [ {истӕмӕнты} "+PRON+PronType=Ind+Number=Plur+Case=Dat" .x. {истӕмӕнты} ] | [ {истӕмӕнты} "+PRON+PronType=Ind+Number=Plur+Case=Dat" .x. {искӕмӕнты} ] ] ;
+define IndPlAll [ [ {истӕмӕты} "+PRON+PronType=Ind+Number=Plur+Case=All" .x. {истӕмӕты} ] | [ {истӕмӕты} "+PRON+PronType=Ind+Number=Plur+Case=All" .x. {искӕмӕты} ] ] ;
+define IndPlIne [ [ {истӕмыты} "+PRON+PronType=Ind+Number=Plur+Case=Ine" .x. {истӕмыты} ] | [ {истӕмыты} "+PRON+PronType=Ind+Number=Plur+Case=Ine" .x. {искӕмыты} ] ] ;
+define IndPlAbl [ [ {истӕмӕйты} "+PRON+PronType=Ind+Number=Plur+Case=Abl" .x. {истӕмӕйты} ] | [ {истӕмӕйты} "+PRON+PronType=Ind+Number=Plur+Case=Abl" .x. {искӕмӕйты} ] ] ;
+define IndPlSup [ [ {истӕуылты} "+PRON+PronType=Ind+Number=Plur+Case=Sup" .x. {истӕуылты} ] | [ {истӕуылты} "+PRON+PronType=Ind+Number=Plur+Case=Sup" .x. {искӕуылты} ] ] ;
+define IndPlEqu [ [ {истӕйауты} "+PRON+PronType=Ind+Number=Plur+Case=Equ" .x. {истӕйауты} ] | [ {истӕйауты} "+PRON+PronType=Ind+Number=Plur+Case=Equ" .x. {искӕйауты} ] ] ;
+define IndPlCom [ [ {истӕимӕты} "+PRON+PronType=Ind+Number=Plur+Case=Com" .x. {истӕимӕты} ] | [ {истӕимӕты} "+PRON+PronType=Ind+Number=Plur+Case=Com" .x. {искӕимӕты} ] ] ;
+define Ind [ IndSgNom | IndSgGen | IndSgDat | IndSgAll | IndSgAbl | IndSgIne | IndSgSup | IndSgEqu | IndSgCom | IndPlNom | IndPlGen | IndPlDat | IndPlAll | IndPlAbl | IndPlIne | IndPlSup | IndPlEqu | IndPlCom ] ;
+
+### Ind2
+define Ind2SgNom [ [ {цыдӕр} "+PRON+PronType=Ind+Number=Sing+Case=Nom" .x. {цыдӕр} ] | [ {цыдӕр} "+PRON+PronType=Ind+Number=Sing+Case=Nom" .x. {чидӕр} ] ] ;
+define Ind2SgGen [ [ {цӕйдӕр} "+PRON+PronType=Ind+Number=Sing+Case=Gen" .x. {цӕйдӕр} ] | [ {цӕйдӕр} "+PRON+PronType=Ind+Number=Sing+Case=Gen" .x. {кӕйдӕр} ] ] ;
+define Ind2SgDat [ [ {цӕмӕндӕр} "+PRON+PronType=Ind+Number=Sing+Case=Dat" .x. {цӕмӕндӕр} ] | [ {цӕмӕндӕр} "+PRON+PronType=Ind+Number=Sing+Case=Dat" .x. {кӕмӕндӕр} ] ] ;
+define Ind2SgAll [ [ {цӕмӕдӕр} "+PRON+PronType=Ind+Number=Sing+Case=All" .x. {цӕмӕдӕр} ] | [ {цӕмӕдӕр} "+PRON+PronType=Ind+Number=Sing+Case=All" .x. {кӕмӕдӕр} ] ] ;
+define Ind2SgIne [ [ {цӕмдӕр} "+PRON+PronType=Ind+Number=Sing+Case=Ine" .x. {цӕмдӕр} ] | [ {цӕмдӕр} "+PRON+PronType=Ind+Number=Sing+Case=Ine" .x. {кӕмдӕр} ] ] ;
+define Ind2SgAbl [ [ {цӕмӕйдӕр} "+PRON+PronType=Ind+Number=Sing+Case=Abl" .x. {цӕмӕйдӕр} ] | [ {цӕмӕйдӕр} "+PRON+PronType=Ind+Number=Sing+Case=Abl" .x. {кӕмӕйдӕр} ] ] ;
+define Ind2SgSup [ [ {цӕуылдӕр} "+PRON+PronType=Ind+Number=Sing+Case=Sup" .x. {цӕуылдӕр} ] | [ {цӕуылдӕр} "+PRON+PronType=Ind+Number=Sing+Case=Sup" .x. {кӕуылдӕр} ] ] ;
+define Ind2SgEqu [ [ {цӕйаудӕр} "+PRON+PronType=Ind+Number=Sing+Case=Equ" .x. {цӕйаудӕр} ] | [ {цӕйаудӕр} "+PRON+PronType=Ind+Number=Sing+Case=Equ" .x. {кӕйаудӕр} ] ] ;
+define Ind2SgCom [ [ {цӕимӕдӕр} "+PRON+PronType=Ind+Number=Sing+Case=Com" .x. {цӕимӕдӕр} ] | [ {цӕимӕдӕр} "+PRON+PronType=Ind+Number=Sing+Case=Com" .x. {кӕимӕдӕр} ] ] ;
+define Ind2PlNom [ [ {цыдӕртӕ} "+PRON+PronType=Ind+Number=Plur+Case=Nom" .x. {цыдӕртӕ} ] | [ {цыдӕртӕ} "+PRON+PronType=Ind+Number=Plur+Case=Nom" .x. {чидӕртӕ} ] ] ;
+define Ind2PlGen [ [ {цӕйдӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Gen" .x. {цӕйдӕрты} ] | [ {цӕйдӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Gen" .x. {кӕйдӕрты} ] ] ;
+define Ind2PlDat [ [ {цӕмӕндӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Dat" .x. {цӕмӕндӕрты} ] | [ {цӕмӕндӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Dat" .x. {кӕмӕндӕрты} ] ] ;
+define Ind2PlAll [ [ {цӕмӕдӕрты} "+PRON+PronType=Ind+Number=Plur+Case=All" .x. {цӕмӕдӕрты} ] | [ {цӕмӕдӕрты} "+PRON+PronType=Ind+Number=Plur+Case=All" .x. {кӕмӕдӕрты} ] ] ;
+define Ind2PlIne [ [ {цӕмдӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Ine" .x. {цӕмдӕрты} ] | [ {цӕмдӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Ine" .x. {кӕмдӕрты} ] ] ;
+define Ind2PlAbl [ [ {цӕмӕйдӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Abl" .x. {цӕмӕйдӕрты} ] | [ {цӕмӕйдӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Abl" .x. {кӕмӕйдӕрты} ] ] ;
+define Ind2PlSup [ [ {цӕуылдӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Sup" .x. {цӕуылдӕрты} ] | [ {цӕуылдӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Sup" .x. {кӕуылдӕрты} ] ] ;
+define Ind2PlEqu [ [ {цӕйаудӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Equ" .x. {цӕйаудӕрты} ] | [ {цӕйаудӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Equ" .x. {кӕйаудӕрты} ] ] ;
+define Ind2PlCom [ [ {цӕимӕдӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Com" .x. {цӕимӕдӕрты} ] | [ {цӕимӕдӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Com" .x. {кӕимӕдӕрты} ] ] ;
+define Ind2 [ Ind2SgNom | Ind2SgGen | Ind2SgDat | Ind2SgAll | Ind2SgAbl | Ind2SgIne | Ind2SgSup | Ind2SgEqu | Ind2SgCom | Ind2PlNom | Ind2PlGen | Ind2PlDat | Ind2PlAll | Ind2PlAbl | Ind2PlIne | Ind2PlSup | Ind2PlEqu | Ind2PlCom ] ;
+
+### Ind3
+define Ind3SgNom [ [ {цыдӕриддӕр} "+PRON+PronType=Ind+Number=Sing+Case=Nom" .x. {цыдӕриддӕр} ] | [ {цыдӕриддӕр} "+PRON+PronType=Ind+Number=Sing+Case=Nom" .x. {чидӕриддӕр} ] ] ;
+define Ind3SgGen [ [ {цӕйдӕриддӕр} "+PRON+PronType=Ind+Number=Sing+Case=Gen" .x. {цӕйдӕриддӕр} ] | [ {цӕйдӕриддӕр} "+PRON+PronType=Ind+Number=Sing+Case=Gen" .x. {кӕйдӕриддӕр} ] ] ;
+define Ind3SgDat [ [ {цӕмӕндӕриддӕр} "+PRON+PronType=Ind+Number=Sing+Case=Dat" .x. {цӕмӕндӕриддӕр} ] | [ {цӕмӕндӕриддӕр} "+PRON+PronType=Ind+Number=Sing+Case=Dat" .x. {кӕмӕндӕриддӕр} ] ] ;
+define Ind3SgAll [ [ {цӕмӕдӕриддӕр} "+PRON+PronType=Ind+Number=Sing+Case=All" .x. {цӕмӕдӕриддӕр} ] | [ {цӕмӕдӕриддӕр} "+PRON+PronType=Ind+Number=Sing+Case=All" .x. {кӕмӕдӕриддӕр} ] ] ;
+define Ind3SgIne [ [ {цӕмдӕриддӕр} "+PRON+PronType=Ind+Number=Sing+Case=Ine" .x. {цӕмдӕриддӕр} ] | [ {цӕмдӕриддӕр} "+PRON+PronType=Ind+Number=Sing+Case=Ine" .x. {кӕмдӕриддӕр} ] ] ;
+define Ind3SgAbl [ [ {цӕмӕйдӕриддӕр} "+PRON+PronType=Ind+Number=Sing+Case=Abl" .x. {цӕмӕйдӕриддӕр} ] | [ {цӕмӕйдӕриддӕр} "+PRON+PronType=Ind+Number=Sing+Case=Abl" .x. {кӕмӕйдӕриддӕр} ] ] ;
+define Ind3SgSup [ [ {цӕуылдӕриддӕр} "+PRON+PronType=Ind+Number=Sing+Case=Sup" .x. {цӕуылдӕриддӕр} ] | [ {цӕуылдӕриддӕр} "+PRON+PronType=Ind+Number=Sing+Case=Sup" .x. {кӕуылдӕриддӕр} ] ] ;
+define Ind3SgEqu [ [ {цӕйаудӕриддӕр} "+PRON+PronType=Ind+Number=Sing+Case=Equ" .x. {цӕйаудӕриддӕр} ] | [ {цӕйаудӕриддӕр} "+PRON+PronType=Ind+Number=Sing+Case=Equ" .x. {кӕйаудӕриддӕр} ] ] ;
+define Ind3SgCom [ [ {цӕимӕдӕриддӕр} "+PRON+PronType=Ind+Number=Sing+Case=Com" .x. {цӕимӕдӕриддӕр} ] | [ {цӕимӕдӕриддӕр} "+PRON+PronType=Ind+Number=Sing+Case=Com" .x. {кӕимӕдӕриддӕр} ] ] ;
+define Ind3PlNom [ [ {цыдӕриддӕртӕ} "+PRON+PronType=Ind+Number=Plur+Case=Nom" .x. {цыдӕриддӕртӕ} ] | [ {цыдӕриддӕртӕ} "+PRON+PronType=Ind+Number=Plur+Case=Nom" .x. {чидӕриддӕртӕ} ] ] ;
+define Ind3PlGen [ [ {цӕйдӕриддӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Gen" .x. {цӕйдӕриддӕрты} ] | [ {цӕйдӕриддӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Gen" .x. {кӕйдӕриддӕрты} ] ] ;
+define Ind3PlDat [ [ {цӕмӕндӕриддӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Dat" .x. {цӕмӕндӕриддӕрты} ] | [ {цӕмӕндӕриддӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Dat" .x. {кӕмӕндӕриддӕрты} ] ] ;
+define Ind3PlAll [ [ {цӕмӕдӕриддӕрты} "+PRON+PronType=Ind+Number=Plur+Case=All" .x. {цӕмӕдӕриддӕрты} ] | [ {цӕмӕдӕриддӕрты} "+PRON+PronType=Ind+Number=Plur+Case=All" .x. {кӕмӕдӕриддӕрты} ] ] ;
+define Ind3PlIne [ [ {цӕмдӕриддӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Ine" .x. {цӕмдӕриддӕрты} ] | [ {цӕмдӕриддӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Ine" .x. {кӕмдӕриддӕрты} ] ] ;
+define Ind3PlAbl [ [ {цӕмӕйдӕриддӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Abl" .x. {цӕмӕйдӕриддӕрты} ] | [ {цӕмӕйдӕриддӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Abl" .x. {кӕмӕйдӕриддӕрты} ] ] ;
+define Ind3PlSup [ [ {цӕуылдӕриддӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Sup" .x. {цӕуылдӕриддӕрты} ] | [ {цӕуылдӕриддӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Sup" .x. {кӕуылдӕриддӕрты} ] ] ;
+define Ind3PlEqu [ [ {цӕйаудӕриддӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Equ" .x. {цӕйаудӕриддӕрты} ] | [ {цӕйаудӕриддӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Equ" .x. {кӕйаудӕриддӕрты} ] ] ;
+define Ind3PlCom [ [ {цӕимӕдӕриддӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Com" .x. {цӕимӕдӕриддӕрты} ] | [ {цӕимӕдӕриддӕрты} "+PRON+PronType=Ind+Number=Plur+Case=Com" .x. {кӕимӕдӕриддӕрты} ] ] ;
+define Ind3  [ Ind3SgNom | Ind3SgGen | Ind3SgDat | Ind3SgAll | Ind3SgAbl | Ind3SgIne | Ind3SgSup | Ind3SgEqu | Ind3SgCom | Ind3PlNom | Ind3PlGen | Ind3PlDat | Ind3PlAll | Ind3PlAbl | Ind3PlIne | Ind3PlSup | Ind3PlEqu | Ind3PlCom ] ;
+
+### Tot
+define TotSgNom [ [ {алцы} "+PRON+PronType=Tot+Number=Sing+Case=Nom" .x. {алцы} ] | [ {алцы} "+PRON+PronType=Tot+Number=Sing+Case=Nom" .x. {алчи} ] ] ;
+define TotSgGen [ [ {алцӕй} "+PRON+PronType=Tot+Number=Sing+Case=Gen" .x. {алцӕй} ] | [ {алцӕй} "+PRON+PronType=Tot+Number=Sing+Case=Gen" .x. {алкӕй} ] ] ;
+define TotSgDat [ [ {алцӕмӕн} "+PRON+PronType=Tot+Number=Sing+Case=Dat" .x. {алцӕмӕн} ] | [ {алцӕмӕн} "+PRON+PronType=Tot+Number=Sing+Case=Dat" .x. {алкӕмӕн} ] ] ;
+define TotSgAll [ [ {алцӕмӕ} "+PRON+PronType=Tot+Number=Sing+Case=All" .x. {алцӕмӕ} ] | [ {алцӕмӕ} "+PRON+PronType=Tot+Number=Sing+Case=All" .x. {алкӕмӕ} ] ] ;
+define TotSgIne [ [ {алцӕм} "+PRON+PronType=Tot+Number=Sing+Case=Ine" .x. {алцӕм} ] | [ {алцӕм} "+PRON+PronType=Tot+Number=Sing+Case=Ine" .x. {алкӕм} ] ] ;
+define TotSgAbl [ [ {алцӕмӕй} "+PRON+PronType=Tot+Number=Sing+Case=Abl" .x. {алцӕмӕй} ] | [ {алцӕмӕй} "+PRON+PronType=Tot+Number=Sing+Case=Abl" .x. {алкӕмӕй} ] ] ;
+define TotSgSup [ [ {алцӕуыл} "+PRON+PronType=Tot+Number=Sing+Case=Sup" .x. {алцӕуыл} ] | [ {алцӕуыл} "+PRON+PronType=Tot+Number=Sing+Case=Sup" .x. {алкӕуыл} ] ] ;
+define TotSgEqu [ [ {алцӕйау} "+PRON+PronType=Tot+Number=Sing+Case=Equ" .x. {алцӕйау} ] | [ {алцӕйау} "+PRON+PronType=Tot+Number=Sing+Case=Equ" .x. {алкӕйау} ] ] ;
+define TotSgCom [ [ {алцӕимӕ} "+PRON+PronType=Tot+Number=Sing+Case=Com" .x. {алцӕимӕ} ] | [ {алцӕимӕ} "+PRON+PronType=Tot+Number=Sing+Case=Com" .x. {алкӕимӕ} ] ] ;
+define TotPlNom [ [ {алцытӕ} "+PRON+PronType=Tot+Number=Plur+Case=Nom" .x. {алцытӕ} ] | [ {алцытӕ} "+PRON+PronType=Tot+Number=Plur+Case=Nom" .x. {алчитӕ} ] ] ;
+define TotPlGen [ [ {алцӕйты} "+PRON+PronType=Tot+Number=Plur+Case=Gen" .x. {алцӕйты} ] | [ {алцӕйты} "+PRON+PronType=Tot+Number=Plur+Case=Gen" .x. {алкӕйты} ] ] ;
+define TotPlDat [ [ {алцӕмӕнты} "+PRON+PronType=Tot+Number=Plur+Case=Dat" .x. {алцӕмӕнты} ] | [ {алцӕмӕнты} "+PRON+PronType=Tot+Number=Plur+Case=Dat" .x. {алкӕмӕнты} ] ] ;
+define TotPlAll [ [ {алцӕмӕты} "+PRON+PronType=Tot+Number=Plur+Case=All" .x. {алцӕмӕты} ] | [ {алцӕмӕты} "+PRON+PronType=Tot+Number=Plur+Case=All" .x. {алкӕмӕты} ] ] ;
+define TotPlIne [ [ {алцӕмыты} "+PRON+PronType=Tot+Number=Plur+Case=Ine" .x. {алцӕмыты} ] | [ {алцӕмыты} "+PRON+PronType=Tot+Number=Plur+Case=Ine" .x. {алкӕмыты} ] ] ;
+define TotPlAbl [ [ {алцӕмӕйты} "+PRON+PronType=Tot+Number=Plur+Case=Abl" .x. {алцӕмӕйты} ] | [ {алцӕмӕйты} "+PRON+PronType=Tot+Number=Plur+Case=Abl" .x. {алкӕмӕйты} ] ] ;
+define TotPlSup [ [ {алцӕуылты} "+PRON+PronType=Tot+Number=Plur+Case=Sup" .x. {алцӕуылты} ] | [ {алцӕуылты} "+PRON+PronType=Tot+Number=Plur+Case=Sup" .x. {алкӕуылты} ] ] ;
+define TotPlEqu [ [ {алцӕйауты} "+PRON+PronType=Tot+Number=Plur+Case=Equ" .x. {алцӕйауты} ] | [ {алцӕйауты} "+PRON+PronType=Tot+Number=Plur+Case=Equ" .x. {алкӕйауты} ] ] ;
+define TotPlCom [ [ {алцӕимӕты} "+PRON+PronType=Tot+Number=Plur+Case=Com" .x. {алцӕимӕты} ] | [ {алцӕимӕты} "+PRON+PronType=Tot+Number=Plur+Case=Com" .x. {алкӕимӕты} ] ] ;
+define Tot [ TotSgNom | TotSgGen | TotSgDat | TotSgAll | TotSgAbl | TotSgIne | TotSgSup | TotSgEqu | TotSgCom | TotPlNom | TotPlGen | TotPlDat | TotPlAll | TotPlAbl | TotPlIne | TotPlSup | TotPlEqu | TotPlCom ] ;
+
+### Neg
+define NegSgNom [ [ {ницы} "+PRON+PronType=Neg+Number=Sing+Case=Nom" .x. {ницы} ] | [ {ницы} "+PRON+PronType=Neg+Number=Sing+Case=Nom" .x. {ничи} ] ] ;
+define NegSgGen [ [ {ницӕй} "+PRON+PronType=Neg+Number=Sing+Case=Gen" .x. {ницӕй} ] | [ {ницӕй} "+PRON+PronType=Neg+Number=Sing+Case=Gen" .x. {никӕй} ] | [ {ницӕй} "+PRON+PronType=Neg+Number=Sing+Case=Gen" .x. {никӕйы} ] ] ;
+define NegSgDat [ [ {ницӕмӕн} "+PRON+PronType=Neg+Number=Sing+Case=Dat" .x. {ницӕмӕн} ] | [ {ницӕмӕн} "+PRON+PronType=Neg+Number=Sing+Case=Dat" .x. {никӕмӕн} ] ] ;
+define NegSgAll [ [ {ницӕмӕ} "+PRON+PronType=Neg+Number=Sing+Case=All" .x. {ницӕмӕ} ] | [ {ницӕмӕ} "+PRON+PronType=Neg+Number=Sing+Case=All" .x. {никӕмӕ} ] ] ;
+define NegSgIne [ [ {ницӕм} "+PRON+PronType=Neg+Number=Sing+Case=Ine" .x. {ницӕм} ] | [ {ницӕм} "+PRON+PronType=Neg+Number=Sing+Case=Ine" .x. {никӕм} ] ] ;
+define NegSgAbl [ [ {ницӕмӕй} "+PRON+PronType=Neg+Number=Sing+Case=Abl" .x. {ницӕмӕй} ] | [ {ницӕмӕй} "+PRON+PronType=Neg+Number=Sing+Case=Abl" .x. {никӕмӕй} ] ] ;
+define NegSgSup [ [ {ницӕуыл} "+PRON+PronType=Neg+Number=Sing+Case=Sup" .x. {ницӕуыл} ] | [ {ницӕуыл} "+PRON+PronType=Neg+Number=Sing+Case=Sup" .x. {никӕуыл} ] ] ;
+define NegSgEqu [ [ {ницӕйау} "+PRON+PronType=Neg+Number=Sing+Case=Equ" .x. {ницӕйау} ] | [ {ницӕйау} "+PRON+PronType=Neg+Number=Sing+Case=Equ" .x. {никӕйау} ] ] ;
+define NegSgCom [ [ {ницӕимӕ} "+PRON+PronType=Neg+Number=Sing+Case=Com" .x. {ницӕимӕ} ] | [ {ницӕимӕ} "+PRON+PronType=Neg+Number=Sing+Case=Com" .x. {никӕимӕ} ] ] ;
+define NegPlNom [ [ {ницытӕ} "+PRON+PronType=Neg+Number=Plur+Case=Nom" .x. {ницытӕ} ] | [ {ницытӕ} "+PRON+PronType=Neg+Number=Plur+Case=Nom" .x. {ничитӕ} ] ] ;
+define NegPlGen [ [ {ницӕйты} "+PRON+PronType=Neg+Number=Plur+Case=Gen" .x. {ницӕйты} ] | [ {ницӕйты} "+PRON+PronType=Neg+Number=Plur+Case=Gen" .x. {никӕйты} ] ] ;
+define NegPlDat [ [ {ницӕмӕнты} "+PRON+PronType=Neg+Number=Plur+Case=Dat" .x. {ницӕмӕнты} ] | [ {ницӕмӕнты} "+PRON+PronType=Neg+Number=Plur+Case=Dat" .x. {никӕмӕнты} ] ] ;
+define NegPlAll [ [ {ницӕмӕты} "+PRON+PronType=Neg+Number=Plur+Case=All" .x. {ницӕмӕты} ] | [ {ницӕмӕты} "+PRON+PronType=Neg+Number=Plur+Case=All" .x. {никӕмӕты} ] ] ;
+define NegPlIne [ [ {ницӕмыты} "+PRON+PronType=Neg+Number=Plur+Case=Ine" .x. {ницӕмыты} ] | [ {ницӕмыты} "+PRON+PronType=Neg+Number=Plur+Case=Ine" .x. {никӕмыты} ] ] ;
+define NegPlAbl [ [ {ницӕмӕйты} "+PRON+PronType=Neg+Number=Plur+Case=Abl" .x. {ницӕмӕйты} ] | [ {ницӕмӕйты} "+PRON+PronType=Neg+Number=Plur+Case=Abl" .x. {никӕмӕйты} ] ] ;
+define NegPlSup [ [ {ницӕуылты} "+PRON+PronType=Neg+Number=Plur+Case=Sup" .x. {ницӕуылты} ] | [ {ницӕуылты} "+PRON+PronType=Neg+Number=Plur+Case=Sup" .x. {никӕуылты} ] ] ;
+define NegPlEqu [ [ {ницӕйауты} "+PRON+PronType=Neg+Number=Plur+Case=Equ" .x. {ницӕйауты} ] | [ {ницӕйауты} "+PRON+PronType=Neg+Number=Plur+Case=Equ" .x. {никӕйауты} ] ] ;
+define NegPlCom [ [ {ницӕимӕты} "+PRON+PronType=Neg+Number=Plur+Case=Com" .x. {ницӕимӕты} ] | [ {ницӕимӕты} "+PRON+PronType=Neg+Number=Plur+Case=Com" .x. {никӕимӕты} ] ] ;
+define Neg [ NegSgNom | NegSgGen | NegSgDat | NegSgAll | NegSgAbl | NegSgIne | NegSgSup | NegSgEqu | NegSgCom | NegPlNom | NegPlGen | NegPlDat | NegPlAll | NegPlAbl | NegPlIne | NegPlSup | NegPlEqu | NegPlCom ] ;
+
+### Neg2
+define Neg2SgNom [ [ {мацы} "+PRON+PronType=Neg+Number=Sing+Case=Nom" .x. {мацы} ] | [ {мацы} "+PRON+PronType=Neg+Number=Sing+Case=Nom" .x. {мачи} ] ] ;
+define Neg2SgGen [ [ {мацӕй} "+PRON+PronType=Neg+Number=Sing+Case=Gen" .x. {мацӕй} ] | [ {мацӕй} "+PRON+PronType=Neg+Number=Sing+Case=Gen" .x. {макӕй} ] | [ {мацӕй} "+PRON+PronType=Neg+Number=Sing+Case=Gen" .x. {макӕйы} ] ] ;
+define Neg2SgDat [ [ {мацӕмӕн} "+PRON+PronType=Neg+Number=Sing+Case=Dat" .x. {мацӕмӕн} ] | [ {мацӕмӕн} "+PRON+PronType=Neg+Number=Sing+Case=Dat" .x. {макӕмӕн} ] ] ;
+define Neg2SgAll [ [ {мацӕмӕ} "+PRON+PronType=Neg+Number=Sing+Case=All" .x. {мацӕмӕ} ] | [ {мацӕмӕ} "+PRON+PronType=Neg+Number=Sing+Case=All" .x. {макӕмӕ} ] ] ;
+define Neg2SgIne [ [ {мацӕм} "+PRON+PronType=Neg+Number=Sing+Case=Ine" .x. {мацӕм} ] | [ {мацӕм} "+PRON+PronType=Neg+Number=Sing+Case=Ine" .x. {макӕм} ] ] ;
+define Neg2SgAbl [ [ {мацӕмӕй} "+PRON+PronType=Neg+Number=Sing+Case=Abl" .x. {мацӕмӕй} ] | [ {мацӕмӕй} "+PRON+PronType=Neg+Number=Sing+Case=Abl" .x. {макӕмӕй} ] ] ;
+define Neg2SgSup [ [ {мацӕуыл} "+PRON+PronType=Neg+Number=Sing+Case=Sup" .x. {мацӕуыл} ] | [ {мацӕуыл} "+PRON+PronType=Neg+Number=Sing+Case=Sup" .x. {макӕуыл} ] ] ;
+define Neg2SgEqu [ [ {мацӕйау} "+PRON+PronType=Neg+Number=Sing+Case=Equ" .x. {мацӕйау} ] | [ {мацӕйау} "+PRON+PronType=Neg+Number=Sing+Case=Equ" .x. {макӕйау} ] ] ;
+define Neg2SgCom [ [ {мацӕимӕ} "+PRON+PronType=Neg+Number=Sing+Case=Com" .x. {мацӕимӕ} ] | [ {мацӕимӕ} "+PRON+PronType=Neg+Number=Sing+Case=Com" .x. {макӕимӕ} ] ] ;
+define Neg2PlNom [ [ {мацытӕ} "+PRON+PronType=Neg+Number=Plur+Case=Nom" .x. {мацытӕ} ] | [ {мацытӕ} "+PRON+PronType=Neg+Number=Plur+Case=Nom" .x. {мачитӕ} ] ] ;
+define Neg2PlGen [ [ {мацӕйты} "+PRON+PronType=Neg+Number=Plur+Case=Gen" .x. {мацӕйты} ] | [ {мацӕйты} "+PRON+PronType=Neg+Number=Plur+Case=Gen" .x. {макӕйты} ] ] ;
+define Neg2PlDat [ [ {мацӕмӕнты} "+PRON+PronType=Neg+Number=Plur+Case=Dat" .x. {мацӕмӕнты} ] | [ {мацӕмӕнты} "+PRON+PronType=Neg+Number=Plur+Case=Dat" .x. {макӕмӕнты} ] ] ;
+define Neg2PlAll [ [ {мацӕмӕты} "+PRON+PronType=Neg+Number=Plur+Case=All" .x. {мацӕмӕты} ] | [ {мацӕмӕты} "+PRON+PronType=Neg+Number=Plur+Case=All" .x. {макӕмӕты} ] ] ;
+define Neg2PlIne [ [ {мацӕмыты} "+PRON+PronType=Neg+Number=Plur+Case=Ine" .x. {мацӕмыты} ] | [ {мацӕмыты} "+PRON+PronType=Neg+Number=Plur+Case=Ine" .x. {макӕмыты} ] ] ;
+define Neg2PlAbl [ [ {мацӕмӕйты} "+PRON+PronType=Neg+Number=Plur+Case=Abl" .x. {мацӕмӕйты} ] | [ {мацӕмӕйты} "+PRON+PronType=Neg+Number=Plur+Case=Abl" .x. {макӕмӕйты} ] ] ;
+define Neg2PlSup [ [ {мацӕуылты} "+PRON+PronType=Neg+Number=Plur+Case=Sup" .x. {мацӕуылты} ] | [ {мацӕуылты} "+PRON+PronType=Neg+Number=Plur+Case=Sup" .x. {макӕуылты} ] ] ;
+define Neg2PlEqu [ [ {мацӕйауты} "+PRON+PronType=Neg+Number=Plur+Case=Equ" .x. {мацӕйауты} ] | [ {мацӕйауты} "+PRON+PronType=Neg+Number=Plur+Case=Equ" .x. {макӕйауты} ] ] ;
+define Neg2PlCom [ [ {мацӕимӕты} "+PRON+PronType=Neg+Number=Plur+Case=Com" .x. {мацӕимӕты} ] | [ {мацӕимӕты} "+PRON+PronType=Neg+Number=Plur+Case=Com" .x. {макӕимӕты} ] ] ;
+define Neg2 [ Neg2SgNom | Neg2SgGen | Neg2SgDat | Neg2SgAll | Neg2SgAbl | Neg2SgIne | Neg2SgSup | Neg2SgEqu | Neg2SgCom | Neg2PlNom | Neg2PlGen | Neg2PlDat | Neg2PlAll | Neg2PlAbl | Neg2PlIne | Neg2PlSup | Neg2PlEqu | Neg2PlCom ] ;
+
+### DemProx
+define DemProxSgNom [ [ {ай} "+PRON+PronType=Dem+Deixis=Prox+Number=Sing+Case=Nom" .x. {а} ] | [ {ай} "+PRON+PronType=Dem+Deixis=Prox+Number=Sing+Case=Nom" .x. {ай} ] | [ {а} "+PRON+PronType=Dem+Deixis=Prox+Number=Sing+Case=Nom" .x. {йай} ] ] ;
+define DemProxSgGen [ [ {ай} "+PRON+PronType=Dem+Deixis=Prox+Number=Sing+Case=Gen" .x. {ай} ] ] ;
+define DemProxSgDat [ [ {ай} "+PRON+PronType=Dem+Deixis=Prox+Number=Sing+Case=Dat" .x. {амӕн} ] ] ;
+define DemProxSgAll [ [ {ай} "+PRON+PronType=Dem+Deixis=Prox+Number=Sing+Case=All" .x. {амӕ} ] ] ;
+define DemProxSgIne [ [ {ай} "+PRON+PronType=Dem+Deixis=Prox+Number=Sing+Case=Ine" .x. {ам} ] ] ;
+define DemProxSgAbl [ [ {ай} "+PRON+PronType=Dem+Deixis=Prox+Number=Sing+Case=Abl" .x. {амӕй} ] ] ;
+define DemProxSgSup [ [ {ай} "+PRON+PronType=Dem+Deixis=Prox+Number=Sing+Case=Sup" .x. {айыл} ] ] ;
+define DemProxSgEqu [ [ {ай} "+PRON+PronType=Dem+Deixis=Prox+Number=Sing+Case=Equ" .x. {айау} ] ] ;
+define DemProxSgCom [ [ {ай} "+PRON+PronType=Dem+Deixis=Prox+Number=Sing+Case=Com" .x. {аимӕ} ] ] ;
+define DemProxSgDir [ [ {ай} "+PRON+PronType=Dem+Deixis=Prox+Number=Sing+Case=Dir" .x. {ардӕм} ] ] ;
+define DemProxSgRcs [ [ {ай} "+PRON+PronType=Dem+Deixis=Prox+Number=Sing+Case=Rcs" .x. {ардыгӕй} ] ] ;
+define DemProx [ DemProxSgNom | DemProxSgGen | DemProxSgDat | DemProxSgAll | DemProxSgAbl | DemProxSgIne | DemProxSgSup | DemProxSgEqu | DemProxSgCom | DemProxSgDir | DemProxSgRcs ] ;
+
+### DemRemt
+define DemRemtSgNom [ [ {уый} "+PRON+PronType=Dem+Deixis=Remt+Number=Sing+Case=Nom" .x. {уый} ] ] ;
+define DemRemtSgGen [ [ {уый} "+PRON+PronType=Dem+Deixis=Remt+Number=Sing+Case=Gen" .x. {уый} ] | [ {уый} "+PRON+PronType=Dem+Deixis=Remt+Number=Sing+Case=Gen" .x. {уыйы} ] | [ {уый} "+PRON+PronType=Dem+Deixis=Remt+Number=Sing+Case=Gen" .x. {уой} ] ] ;
+define DemRemtSgDat [ [ {уый} "+PRON+PronType=Dem+Deixis=Remt+Number=Sing+Case=Dat" .x. {уымӕн} ] ] ;
+define DemRemtSgAll [ [ {уый} "+PRON+PronType=Dem+Deixis=Remt+Number=Sing+Case=All" .x. {уымӕ} ] ] ;
+define DemRemtSgIne [ [ {уый} "+PRON+PronType=Dem+Deixis=Remt+Number=Sing+Case=Ine" .x. {уым} ] ] ;
+define DemRemtSgAbl [ [ {уый} "+PRON+PronType=Dem+Deixis=Remt+Number=Sing+Case=Abl" .x. {уымӕй} ] ] ;
+define DemRemtSgSup [ [ {уый} "+PRON+PronType=Dem+Deixis=Remt+Number=Sing+Case=Sup" .x. {ууыл} ] ] ;
+define DemRemtSgEqu [ [ {уый} "+PRON+PronType=Dem+Deixis=Remt+Number=Sing+Case=Equ" .x. {уыйау} ] ] ;
+define DemRemtSgCom [ [ {уый} "+PRON+PronType=Dem+Deixis=Remt+Number=Sing+Case=Com" .x. {уыимӕ} ] | [ {уыимӕ} "+PRON+PronType=Dem+Deixis=Remt+Number=Sing+Case=Com" .x. {уыйимӕ} ] ] ;
+define DemRemtSgDir [ [ {уый} "+PRON+PronType=Dem+Deixis=Remt+Number=Sing+Case=Dir" .x. {уырдӕм} ] ] ;
+define DemRemtSgRcs [ [ {уый} "+PRON+PronType=Dem+Deixis=Remt+Number=Sing+Case=Rcs" .x. {уырдыгӕй} ] ] ;
+define DemRemt [ DemRemtSgNom | DemRemtSgGen | DemRemtSgDat | DemRemtSgAll | DemRemtSgAbl | DemRemtSgIne | DemRemtSgSup | DemRemtSgEqu | DemRemtSgCom | DemRemtSgDir | DemRemtSgRcs ] ;
+
+define Adaem [ {адӕймаг} "+NOUN+Number=Plur+Case=Nom" .x. {адӕм} ] ;
+
+define Exceptions [ PronPrs | be | beV | Int | Ind | Ind2 | Ind3 | Tot | Neg | Neg2 | DemProx | DemRemt | Adaem ] ;
+
+read lexc oss_proto.lexc
+define Lexicon;
+
+define Grammar Lexicon .o.
+               YInsertion .o.
+			   JInsertion .o.
+			   ExAbl .o.
+               Cleanup .o.
+			   NCleanup ;
+			   
+#push Grammar
+
+define Analyzer Exceptions .P. Grammar ;
+			   
+push Analyzer
